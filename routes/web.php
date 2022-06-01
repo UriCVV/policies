@@ -23,3 +23,4 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/posts', [App\Http\Controllers\PostController::class, 'index'])->name('post.index')->middleware('auth');
+Route::delete('/delete/{id}', [\App\Http\Controllers\PostController::class, 'destroy'])->name('delete')->middleware('auth');
