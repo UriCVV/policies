@@ -43,7 +43,10 @@ class User extends Authenticatable
     ];
 
     public function isSuperAdmin(){
-        return true;
+        if ($this->id % 2 == 0) {
+            return true;
+        }
+        return false;
     }
 
     public function posts()
