@@ -19,6 +19,7 @@
   <br>
 
   @foreach ($posts as $post)
+  @can('view', $post)
   <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="card">
@@ -26,12 +27,20 @@
             <div>
               {{ $post->title }}
             </div>
+            <form method="POST" action="{{ route('delete', ['id' => $post->id]) }}">
+              @csrf
+              @method('delete')
+              <button type="submit" class="btn btn-danger">
+                Delete post
+              </button>
+            </form>
           </div>
           <div class="card-body">{{ $post->content }}</div>
         </div>
       </div>
   </div>
   <hr>
+  @endcan
   @endforeach
 
 

@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+
+    /* public function __construct()
+    {
+        $this->authorizeResource(Post::class);
+    } */
     /**
      * Display a listing of the resource.
      *
@@ -82,6 +87,7 @@ class PostController extends Controller
     public function destroy(Post $post, $id)
     {
         $post = Post::find($id);
+        $this->authorize('delete', $post);
         $post->delete();
 
         return redirect()->route('post.index');
